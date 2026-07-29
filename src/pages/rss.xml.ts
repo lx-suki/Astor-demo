@@ -4,7 +4,7 @@ import type { APIContext } from 'astro';
 import { SITE_CONFIG } from '../config.ts';
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('blog', ({ data }: { data: any }) => data.published === true);
+  const posts = await getCollection('blog', ({ data }: { data: any }) => data.published === false);
   const sorted = posts.sort((a: { data: { date: number; }; }, b: { data: { date: number; }; }) => b.data.date.valueOf() - a.data.date.valueOf());
 
   return rss({
