@@ -4,14 +4,14 @@ import type { APIContext } from 'astro';
 import { SITE_CONFIG } from '../config.ts';
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('blog', ({ data }) => data.published === true);
-  const sorted = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const posts = await getCollection('blog', ({ data }: { data: any }) => data.published === true);
+  const sorted = posts.sort((a: { data: { date: number; }; }, b: { data: { date: number; }; }) => b.data.date.valueOf() - a.data.date.valueOf());
 
   return rss({
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
     site: context.site!,
-    items: sorted.map((post) => ({
+    items: sorted.map((post: { data: { title: any; description: any; date: any; }; id: any; }) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
