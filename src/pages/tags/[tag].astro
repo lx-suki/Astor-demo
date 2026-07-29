@@ -5,7 +5,7 @@ import { SITE_CONFIG } from '../../config';
 import { slugifyTag } from '../../utils/tags';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => data.published === true);
+  const posts = await getCollection('blog', ({ data }: { data: { published: boolean; }; }) => data.published === true);
 
   const byTag = new Map<string, { name: string; posts: CollectionEntry<'blog'>[] }>();
   for (const post of posts) {
@@ -52,7 +52,7 @@ const base = import.meta.env.BASE_URL;
 
     <section aria-label={`Posts tagged ${name}`}>
       <ul class="max-w-3xl mx-auto space-y-6 list-none p-0 m-0">
-        {posts.map((post) => (
+        {posts.map((post: { id: any; data: { title: unknown; date: { toISOString: () => string | null | undefined; toLocaleDateString: (arg0: string, arg1: { year: string; month: string; day: string; }) => unknown; }; description: unknown; }; }) => (
           <li class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
             <h2 class="text-xl font-semibold mb-2">
               <a href={`${base}blog/${post.id}`} class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400">

@@ -4,12 +4,12 @@ import Layout from '../../layouts/Layout.astro';
 
 const base = import.meta.env.BASE_URL;
 
-const allPosts = await getCollection('blog', ({ data }) => {
+const allPosts = await getCollection('blog', ({ data }: { data: { published: boolean; }; }) => {
   return data.published === true;
 });
 
 // Sort by date descending
-const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const sortedPosts = allPosts.sort((a: { data: { date: number; }; }, b: { data: { date: number; }; }) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout title="Blog - Amirdaraee">
@@ -18,7 +18,9 @@ const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.
 
     <section aria-label="Blog post listing">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sortedPosts.map((post) => (
+        {sortedPosts.map((post: { id: any; data: {
+[x: string]: any; title: any; description: any; date: any; 
+}; }) => (
           <article class="blog-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg" aria-labelledby={`post-title-${post.id}`}>
             {post.data.photo && (
               <picture>

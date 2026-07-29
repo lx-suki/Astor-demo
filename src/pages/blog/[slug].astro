@@ -9,11 +9,11 @@ const base = import.meta.env.BASE_URL;
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog');
   const published = blogPosts
-    .filter((p) => p.data.published)
-    .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+    .filter((p: { data: { published: any; }; }) => p.data.published)
+    .sort((a: { data: { date: number; }; }, b: { data: { date: number; }; }) => a.data.date.valueOf() - b.data.date.valueOf());
 
-  return blogPosts.map((post) => {
-    const i = published.findIndex((p) => p.id === post.id);
+  return blogPosts.map((post: { id: any; }) => {
+    const i = published.findIndex((p: { id: any; }) => p.id === post.id);
     return {
       params: { slug: post.id },
       props: {
