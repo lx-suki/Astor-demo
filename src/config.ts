@@ -6,17 +6,17 @@
 
 export const SITE_CONFIG = {
   // Basic site information
-  title: "My Blog",
+  title: "A Blog From Lx ",
   description: "A modern blog built with Astro",
-  author: "amirdaraee",
-  email: "amirdaraee@gmail.com",
+  author: "lx-suki",
+  email: "jkbingtang@outlook.com",
 
   // Social media links
   // Remove or leave empty any platforms you don't use
   socialLinks: {
-    github: "amirdaraee",
-    twitter: "amirdaraee",
-    linkedin: "amirdaraee",
+    github: "lx-suki",
+    twitter: "lx-suki",
+    linkedin: "lx-suki",
     youtube: "", // Leave empty if not used
   },
 
@@ -26,12 +26,12 @@ export const SITE_CONFIG = {
   googleAnalyticsId: "",
 
   // Locale settings
-  language: "en",
-  locale: "en-US",
+  language: "zh-CN",
+  locale: "zh-CN",
 
   // Site URL (used for canonical URLs and SEO)
   // Update this with your production URL
-  siteUrl: "https://amirdaraee.github.io/astro-pulsar",
+  siteUrl: "https://space.bilibili.com/622499613",
 
   // Default meta image for social sharing
   // Place your image in the public folder
